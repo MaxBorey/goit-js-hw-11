@@ -39,7 +39,7 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  loader.style.display = "flex"; // або "block", залежить від стилю
+  loader.style.display = "flex"; 
 }
 
 export function hideLoader() {
