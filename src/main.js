@@ -7,7 +7,7 @@ import {
   clearGallery,
   showLoader,
   hideLoader,
-} from "./js/render-function.js";
+} from "./js/render-functions.js";
 
 const form = document.querySelector("#search-form");
 const breedInput = document.querySelector("#breed-input");
