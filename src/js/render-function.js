@@ -13,22 +13,26 @@ const lightbox = new SimpleLightbox(".gallery-item", {
 export function createGallery(images) {
   const markup = images.map(
     ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
-      <a href="${largeImageURL}" class="gallery-item" data-caption="
-        👍 Likes: ${likes}
-        👁 Views: ${views}
-        💬 Comments: ${comments}
-        ⬇ Downloads: ${downloads}
-      ">
+      <a href="${largeImageURL}" class="gallery-item">
         <div class="card">
           <img src="${webformatURL}" alt="${tags}" />
+          <div class="card-info">
+            <p>👍 Likes: ${likes}</p>
+            <p>👁 Views: ${views}</p>
+            <p>💬 Comments: ${comments}</p>
+            <p>⬇ Downloads: ${downloads}</p>
+          </div>
         </div>
       </a>
     `
   ).join("");
 
+  const catCard = document.querySelector("#cat-card");
   catCard.innerHTML = markup;
+
   lightbox.refresh();
 }
+
 
 export function clearGallery() {
   catCard.innerHTML = "";

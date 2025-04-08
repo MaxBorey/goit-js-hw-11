@@ -9,6 +9,7 @@ import {
   hideLoader,
 } from "./js/render-function.js";
 
+// DOM
 const form = document.querySelector("#search-form");
 const breedInput = document.querySelector("#breed-input");
 const breedsList = document.querySelector("#breeds-list");
@@ -32,9 +33,19 @@ form.addEventListener("submit", (event) => {
         return;
       }
 
+      // Рендер галереї
       createGallery(images);
-      breedsList.innerHTML = images
-        .map(({ tags }) => `<option value="${tags}"></option>`)
+
+      // Показуємо тільки унікальні теги у вигляді підказок
+      const allTags = images.flatMap(image =>
+        image.tags.split(',').map(tag => tag.trim().toLowerCase())
+      );
+
+      const uniqueTags = [...new Set(allTags)];
+      const topTags = uniqueTags.slice(0, 10); // максимум 10 тегів
+
+      breedsList.innerHTML = topTags
+        .map(tag => `<option value="${tag}"></option>`)
         .join("");
     })
     .catch(error => {
